@@ -19,7 +19,6 @@ public class SurveyResponse extends BaseDriver {
     public void login(){
 
         driver.navigate().to("https://demowebshop.tricentis.com/");
-
         Actions actionsDriver=new Actions(driver);
 
         WebElement logIn=driver.findElement(By.xpath("//a[@class='ico-login']"));
@@ -33,10 +32,5 @@ public class SurveyResponse extends BaseDriver {
 
         WebElement loginButton=driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
         actionsDriver.moveToElement(loginButton).click().build().perform();
-
-    }
-    @Test (priority = 2)
-    public void answerPool(){
-
     }
 }
