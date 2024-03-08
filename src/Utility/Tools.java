@@ -1,6 +1,6 @@
 package Utility;
 
-public class MyFunc {
+public class Tools {
     public static void wait(int sn){
 
         try {

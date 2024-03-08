@@ -17,7 +17,7 @@ public class BaseDriver {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
     public static void waitAndClose(){
-        MyFunc.wait(3);
+        Tools.wait(3);
         driver.quit();
     }
 }
