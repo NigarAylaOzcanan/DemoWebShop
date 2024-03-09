@@ -95,4 +95,9 @@ public class SurveyResponse extends BaseDriver {
         System.out.println("Survey Result: " + totalVotes.getText());
 
     }
+    @AfterClass
+    public void tearDown(){
+        Tools.wait(3);
+        driver.quit();
+    }
 }
