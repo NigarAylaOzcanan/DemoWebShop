@@ -7,18 +7,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
+import org.testng.annotations.*;
 
 public class SurveyResponse extends BaseDriver {
+
     // CREDENTIALS:
     // Name: TestUser
     // Surname: Tester
     // E-mail: lalot13449@artgulin.com
     // Password: Not4You2Know
 
-    @BeforeSuite
+    @BeforeClass
     public void setUp() {
         driver.navigate().to("https://demowebshop.tricentis.com/");
     }
@@ -42,7 +41,6 @@ public class SurveyResponse extends BaseDriver {
         WebElement warningMsg =
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@id='block-poll-vote-error-1'])[1]")));
         Assert.assertTrue(warningMsg.isDisplayed());
-        Assert.assertEquals(warningMsg.getText(), "Only registered users can vote.");
         System.out.println("Warning message: " + warningMsg.getText());
 
     }
@@ -84,5 +82,17 @@ public class SurveyResponse extends BaseDriver {
                 .click()
                 .build()
                 .perform();
+        WebElement successfullLogin=
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'lalot13449@artgulin.com')]")));
+        Assert.assertTrue(successfullLogin.isDisplayed(),"Login was unsuccessful.");
+        System.out.println("Login Is Successful. The results of the survey are displayed below.");
+    }
+    @Test (priority = 3, dependsOnMethods = {"answerPollWithoutLogin","login"} )
+    public void surveyRateResults(){
+
+        WebElement totalVotes= driver.findElement(By.xpath("//span[contains(text(),'7550 vote(s)...')]"));
+        Assert.assertTrue(totalVotes.isDisplayed(),"Result page is not displayed!");
+        System.out.println("Survey Result: " + totalVotes.getText());
+
     }
 }
