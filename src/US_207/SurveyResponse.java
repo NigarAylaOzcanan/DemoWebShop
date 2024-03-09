@@ -11,8 +11,6 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 
-import javax.tools.Tool;
-
 public class SurveyResponse extends BaseDriver {
     // CREDENTIALS:
     // Name: TestUser
@@ -23,6 +21,29 @@ public class SurveyResponse extends BaseDriver {
     @BeforeSuite
     public void setUp() {
         driver.navigate().to("https://demowebshop.tricentis.com/");
+    }
+    @Test(priority = 1)
+    public void answerPollWithoutLogin() {
+        Actions actionsDriver = new Actions(driver);
+        WebElement answerPoll = driver.findElement(By.xpath("//label[contains(text(),'Excellent')]"));
+        actionsDriver
+                .moveToElement(answerPoll)
+                .click()
+                .build()
+                .perform();
+
+        WebElement voteButton = driver.findElement(By.cssSelector("#vote-poll-1:nth-child(1)"));
+        actionsDriver
+                .moveToElement(voteButton)
+                .click()
+                .build()
+                .perform();
+
+        WebElement warningMsg =
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@id='block-poll-vote-error-1'])[1]")));
+        Assert.assertTrue(warningMsg.isDisplayed());
+        Assert.assertEquals(warningMsg.getText(), "Only registered users can vote.");
+        System.out.println("Warning message: " + warningMsg.getText());
 
     }
     @Test(priority = 2)
@@ -30,17 +51,38 @@ public class SurveyResponse extends BaseDriver {
 
         Actions actionsDriver = new Actions(driver);
 
-        WebElement logIn = driver.findElement(By.xpath("//a[@class='ico-login']"));
-        actionsDriver.moveToElement(logIn).click().build().perform();
+        WebElement logIn =
+         driver.findElement(By.xpath("//a[@class='ico-login']"));
+        actionsDriver
+                .moveToElement(logIn)
+                .click()
+                .build()
+                .perform();
 
-        WebElement eMail = driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
-        actionsDriver.moveToElement(eMail).click().sendKeys("lalot13449@artgulin.com").build().perform();
+        WebElement eMail =
+        driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
+        actionsDriver
+                .moveToElement(eMail)
+                .click()
+                .sendKeys("lalot13449@artgulin.com")
+                .build()
+                .perform();
 
-        WebElement password = driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
-        actionsDriver.moveToElement(password).click().sendKeys("Not4You2Know").build().perform();
+        WebElement password =
+        driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
+        actionsDriver
+                .moveToElement(password)
+                .click()
+                .sendKeys("Not4You2Know")
+                .build()
+                .perform();
 
-        WebElement loginButton = driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        actionsDriver.moveToElement(loginButton).click().build().perform();
+        WebElement loginButton =
+        driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
+        actionsDriver
+                .moveToElement(loginButton)
+                .click()
+                .build()
+                .perform();
     }
-
 }
