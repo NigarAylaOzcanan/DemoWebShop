@@ -64,6 +64,95 @@ public class Ordering extends BaseDriver {
         WebElement checkOut = driver.findElement(By.xpath("//*[@id='checkout']"));
         actionsDriver.moveToElement(checkOut).click().build().perform();
 
+        WebElement adressCountry = driver.findElement(By.xpath("//*[@id='BillingNewAddress_CountryId']"));
+        Select ddMenuAdressCountry = new Select(adressCountry);
+        ddMenuAdressCountry.selectByVisibleText("United States");
+
+        WebElement adressProvince = driver.findElement(By.xpath("//*[@id='BillingNewAddress_StateProvinceId']"));
+        Select ddMenuAdressProvince = new Select(adressProvince);
+        ddMenuAdressProvince.selectByVisibleText("Oklahoma");
+
+        WebElement adress = driver.findElement(By.xpath("//*[@id='BillingNewAddress_Address1']"));
+        actionsDriver.moveToElement(adress).click().sendKeys("10700 S MUSTANG RD MUSTANG OK 73064-9329 USA").build().perform();
+
+        WebElement city = driver.findElement(By.xpath("//*[@id='BillingNewAddress_City']"));
+        actionsDriver.moveToElement(city).click().sendKeys("Oklahoma").build().perform();
+
+        WebElement zipCode = driver.findElement(By.xpath("//*[@id='BillingNewAddress_ZipPostalCode']"));
+        actionsDriver.moveToElement(zipCode).click().sendKeys("12345").build().perform();
+
+        WebElement phoneNumber = driver.findElement(By.xpath("//*[@id='BillingNewAddress_PhoneNumber']"));
+        actionsDriver.moveToElement(phoneNumber).click().sendKeys("05542926146").build().perform();
+
+        WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
+        actionsDriver.moveToElement(continueButton).click().build().perform();
+
+        WebElement shippingAdress = driver.findElement(By.xpath("//*[@id='shipping-address-select']"));
+        Assert.assertTrue(shippingAdress.getText().contains("MUSTANG"), "Shipping address is wrong");
+
+        WebElement inStorePickup = driver.findElement(By.cssSelector("[id='PickUpInStore']"));
+        actionsDriver.moveToElement(inStorePickup).click().build().perform();
+
+        WebElement continueButton2 = driver.findElement(By.xpath("(//*[@class='button-1 new-address-next-step-button'])[2]"));
+        actionsDriver.moveToElement(continueButton2).click().build().perform();
+
+        Tools.wait(1);
+        WebElement creditCardChoice = driver.findElement(By.xpath("(//*[@name='paymentmethod'])[3]"));
+        wait.until(ExpectedConditions.elementToBeClickable(creditCardChoice));
+        actionsDriver.moveToElement(creditCardChoice).click().build().perform();
+
+        WebElement continueButton3 = driver.findElement(By.xpath("(//*[@class='button-1 payment-method-next-step-button'])"));
+        actionsDriver.moveToElement(continueButton3).click().build().perform();
+
+        WebElement creditCardValidation = driver.findElement(By.xpath("//*[text()='Select credit card']"));
+        wait.until(ExpectedConditions.textToBe(By.xpath("//*[text()='Select credit card']"), "Select credit card"));
+        Assert.assertTrue(creditCardValidation.getText().contains("credit card"), "Incorrect payment method");
+
+        WebElement creditCardType = driver.findElement(By.xpath("(//*[@id='CreditCardType'])"));
+        Select ddMenuCreditCard = new Select(creditCardType);
+        ddMenuCreditCard.selectByVisibleText("Visa");
+
+        WebElement cardHolderName = driver.findElement(By.xpath("(//*[@id='CardholderName'])"));
+        actionsDriver.moveToElement(cardHolderName).click().sendKeys("Albus Dumbledore").build().perform();
+
+        WebElement cardNumber = driver.findElement(By.xpath("(//*[@id='CardNumber'])"));
+        actionsDriver.moveToElement(cardNumber).click().sendKeys("4242424242424242").build().perform();
+
+        WebElement expirationMonth = driver.findElement(By.xpath("//*[@id='ExpireMonth']"));
+        Select ddMenuMonth = new Select(expirationMonth);
+        ddMenuMonth.selectByVisibleText("01");
+
+        WebElement expirationYear = driver.findElement(By.xpath("//*[@id='ExpireYear']"));
+        Select ddMenuYear = new Select(expirationYear);
+        ddMenuYear.selectByVisibleText("2032");
+
+        WebElement cardCode = driver.findElement(By.xpath("//*[@id='CardCode']"));
+        actionsDriver.moveToElement(cardCode).click().sendKeys("123").build().perform();
+
+        WebElement continueButton4 = driver.findElement(By.xpath("//*[@class='button-1 payment-info-next-step-button']"));
+        actionsDriver.moveToElement(continueButton4).click().build().perform();
+
+        WebElement price = driver.findElement(By.cssSelector("[class='product-unit-price']"));
+        String priceStr = price.getText();
+        double priceInt = Double.parseDouble(priceStr);
+
+        WebElement total = driver.findElement(By.cssSelector("[class='product-subtotal']"));
+        String totalStr = total.getText();
+        double totalInt = Double.parseDouble(totalStr);
+
+        Assert.assertTrue(priceInt == totalInt, "The product price is not equal to the total price");
+
+        WebElement confirm = driver.findElement(By.cssSelector("[class='button-1 confirm-order-next-step-button']"));
+        actionsDriver.moveToElement(confirm).click().build().perform();
+
+        wait.until(ExpectedConditions.urlToBe("https://demowebshop.tricentis.com/checkout/completed/"));
+        WebElement titleValidation = driver.findElement(By.cssSelector("[class='title'] strong"));
+        System.out.println(titleValidation.getText());
+
+        Assert.assertTrue(titleValidation.getText().contains("successfully"), "Transaction could not be confirmed");
+        WebElement continueButton5 = driver.findElement(By.xpath("//input[@class='button-2 order-completed-continue-button']"));
+        actionsDriver.moveToElement(continueButton5).click().build().perform();
+
         waitAndClose();
 
     }
