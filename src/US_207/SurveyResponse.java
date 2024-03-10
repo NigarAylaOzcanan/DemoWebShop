@@ -11,19 +11,29 @@ import org.testng.annotations.*;
 
 public class SurveyResponse extends BaseDriver {
 
-    // CREDENTIALS:
-    // Name: TestUser
-    // Surname: Tester
-    // E-mail: lalot13449@artgulin.com
-    // Password: Not4You2Know
+   /** single-line comments have been added for clarity.*/
+   /*  Ensure that the user can actively engage with the community poll,
+    receive appropriate notifications if not logged in,
+    and access poll results after logging in. */
+
+   // CREDENTIALS:
+   // Name: TestUser
+   // Surname: Tester
+   // E-mail: lalot13449@artgulin.com
+   // Password: Not4You2Know
 
     @BeforeClass
     public void setUp() {
+
+        // Open the browser and navigate to the website
         driver.navigate().to("https://demowebshop.tricentis.com/");
     }
     @Test(priority = 1)
     public void answerPollWithoutLogin() {
+
         Actions actionsDriver = new Actions(driver);
+
+        // Select the "Excellent" option to answer the questionnaire. (Voting option: "Excellent")
         WebElement answerPoll = driver.findElement(By.xpath("//label[contains(text(),'Excellent')]"));
         actionsDriver
                 .moveToElement(answerPoll)
@@ -31,6 +41,7 @@ public class SurveyResponse extends BaseDriver {
                 .build()
                 .perform();
 
+        // And click on the "Submit" button
         WebElement voteButton = driver.findElement(By.cssSelector("#vote-poll-1:nth-child(1)"));
         actionsDriver
                 .moveToElement(voteButton)
@@ -38,6 +49,7 @@ public class SurveyResponse extends BaseDriver {
                 .build()
                 .perform();
 
+        // if not logged in, a warning message such as 'Only Registered Users Can Vote' should be displayed.
         WebElement warningMsg =
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@id='block-poll-vote-error-1'])[1]")));
         Assert.assertTrue(warningMsg.isDisplayed());
