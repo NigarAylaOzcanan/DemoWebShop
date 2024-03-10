@@ -13,11 +13,15 @@ import org.testng.annotations.Test;
 
 public class Logout extends BaseDriver {
 
+    /* Verify whether the user is able to
+       successfully log out of his/her account.*/
+
     // CREDENTIALS:
     // Name: TestUser
     // Surname: Tester
     // E-mail: lalot13449@artgulin.com
     // Password: Not4You2Know
+
     @BeforeClass
     public void setUp() {
 
@@ -28,6 +32,7 @@ public class Logout extends BaseDriver {
     public void logIn() {
         Actions actionsDriver = new Actions(driver);
 
+        // Click on the "Log in" link in the upper right corner.
         WebElement logIn =
         driver.findElement(By.xpath("//a[@class='ico-login']"));
         actionsDriver
@@ -36,6 +41,8 @@ public class Logout extends BaseDriver {
                 .build()
                 .perform();
 
+        // Enter the valid credentials in the placeholders provided.
+        // Valid e-mail
         WebElement eMail =
         driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
         actionsDriver
@@ -45,6 +52,7 @@ public class Logout extends BaseDriver {
                 .build()
                 .perform();
 
+        // Valid password
         WebElement password =
         driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
         actionsDriver
@@ -53,7 +61,7 @@ public class Logout extends BaseDriver {
                 .sendKeys("Not4You2Know")
                 .build()
                 .perform();
-
+        // Click on the "Log in" button
         WebElement loginButton =
         driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
         actionsDriver
@@ -61,8 +69,11 @@ public class Logout extends BaseDriver {
                 .click()
                 .build()
                 .perform();
+
+        // Verify that the username or e-mail appears in the upper right corner after logging in.
         WebElement successfullLogin=
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'lalot13449@artgulin.com')]")));
+
         Assert.assertTrue(successfullLogin.isDisplayed(),"Login is unsuccessful.");
 
     }
@@ -71,6 +82,7 @@ public class Logout extends BaseDriver {
 
         Actions actionsDriver = new Actions(driver);
 
+        // Click on the "Log out" link in the upper right corner.
         WebElement logOut =
         driver.findElement(By.xpath("//a[contains(text(),'Log out')]"));
         actionsDriver
@@ -79,9 +91,12 @@ public class Logout extends BaseDriver {
                 .build()
                 .perform();
 
+        // The user should be successfully logged out from the account.
         WebElement successfullLogOut=
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" //a[contains(text(),'Log in')]")));
+
         Assert.assertTrue(successfullLogOut.isDisplayed(), "Logout is unsuccessful");
+
         System.out.println("Logout Is Successful.");
 
     }
