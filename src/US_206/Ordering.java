@@ -8,19 +8,24 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Ordering extends BaseDriver {
+    // CREDENTIALS:
+    // Firs Name: Caput
+    // Last Name: Draconis
+    // E-mail: caputdraconis183@gmail.com
+    // Password: Lord@183.
 
-    @Test
-    public void Test1() {
-        // CREDENTIALS:
-        // Firs Name: Caput
-        // Last Name: Draconis
-        // E-mail: caputdraconis183@gmail.com
-        // Password: Lord@183.
-
+    @BeforeClass
+    public void setUp() {
         driver.get("https://demowebshop.tricentis.com/");
+    }
+
+    @Test(priority = 1)
+    public void login() {
         Actions actionsDriver = new Actions(driver);
 
         WebElement logIn = driver.findElement(By.xpath("//a[text()='Log in']"));
@@ -34,6 +39,13 @@ public class Ordering extends BaseDriver {
 
         WebElement loginButton = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
         actionsDriver.moveToElement(loginButton).click().build().perform();
+
+    }
+
+    @Test(priority = 2)
+    public void orderingAndControl() {
+
+        Actions actionsDriver = new Actions(driver);
 
         WebElement computers = driver.findElement(By.cssSelector("[class='inactive']:nth-child(2)>a"));
         actionsDriver.moveToElement(computers).click().build().perform();
@@ -153,7 +165,10 @@ public class Ordering extends BaseDriver {
         WebElement continueButton5 = driver.findElement(By.xpath("//input[@class='button-2 order-completed-continue-button']"));
         actionsDriver.moveToElement(continueButton5).click().build().perform();
 
-        waitAndClose();
+    }
 
+    @AfterClass
+    public void tearDown() {
+        waitAndClose();
     }
 }
