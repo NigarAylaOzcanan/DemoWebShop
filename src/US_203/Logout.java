@@ -1,11 +1,13 @@
 package US_203;
 
 import Utility.BaseDriver;
+import Utility.Tools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -77,5 +79,10 @@ public class Logout extends BaseDriver {
         Assert.assertTrue(successfullLogOut.isDisplayed(), "Logout is unsuccessful");
         System.out.println("Logout Is Successful.");
 
+    }
+    @AfterClass
+    public void tearDown(){
+        Tools.wait(3);
+        driver.quit();
     }
 }
