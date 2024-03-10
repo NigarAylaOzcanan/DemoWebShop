@@ -22,7 +22,7 @@ public class Logout extends BaseDriver {
         Actions actionsDriver = new Actions(driver);
 
         WebElement logIn =
-                driver.findElement(By.xpath("//a[@class='ico-login']"));
+        driver.findElement(By.xpath("//a[@class='ico-login']"));
         actionsDriver
                 .moveToElement(logIn)
                 .click()
@@ -30,7 +30,7 @@ public class Logout extends BaseDriver {
                 .perform();
 
         WebElement eMail =
-                driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
+        driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
         actionsDriver
                 .moveToElement(eMail)
                 .click()
@@ -39,7 +39,7 @@ public class Logout extends BaseDriver {
                 .perform();
 
         WebElement password =
-                driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
+        driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
         actionsDriver
                 .moveToElement(password)
                 .click()
@@ -48,15 +48,34 @@ public class Logout extends BaseDriver {
                 .perform();
 
         WebElement loginButton =
-                driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
+        driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
         actionsDriver
                 .moveToElement(loginButton)
                 .click()
                 .build()
                 .perform();
         WebElement successfullLogin=
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'lalot13449@artgulin.com')]")));
-        Assert.assertTrue(successfullLogin.isDisplayed(),"Login was unsuccessful.");
-        System.out.println("Login Is Successful. The results of the survey are displayed below.");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'lalot13449@artgulin.com')]")));
+        Assert.assertTrue(successfullLogin.isDisplayed(),"Login is unsuccessful.");
+
+    }
+    @Test (priority = 2,dependsOnMethods = {"logIn"})
+    public void logOut(){
+
+        Actions actionsDriver = new Actions(driver);
+
+        WebElement logOut =
+        driver.findElement(By.xpath("//a[contains(text(),'Log out')]"));
+        actionsDriver
+                .moveToElement(logOut)
+                .click()
+                .build()
+                .perform();
+
+        WebElement successfullLogOut=
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" //a[contains(text(),'Log in')]")));
+        Assert.assertTrue(successfullLogOut.isDisplayed(), "Logout is unsuccessful");
+        System.out.println("Logout Is Successful.");
+
     }
 }
