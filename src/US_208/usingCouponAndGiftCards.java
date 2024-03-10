@@ -32,8 +32,6 @@ public class usingCouponAndGiftCards extends BaseDriver {
 
         WebElement loginButton = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
         actionsDriver.moveToElement(loginButton).click().build().perform();
-
-
         waitAndClose();
     }
 }
