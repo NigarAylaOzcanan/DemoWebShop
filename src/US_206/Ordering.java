@@ -12,6 +12,8 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class Ordering extends BaseDriver {
     // CREDENTIALS:
     // Firs Name: Caput
@@ -76,28 +78,37 @@ public class Ordering extends BaseDriver {
         WebElement checkOut = driver.findElement(By.xpath("//*[@id='checkout']"));
         actionsDriver.moveToElement(checkOut).click().build().perform();
 
-        WebElement adressCountry = driver.findElement(By.xpath("//*[@id='BillingNewAddress_CountryId']"));
-        Select ddMenuAdressCountry = new Select(adressCountry);
-        ddMenuAdressCountry.selectByVisibleText("United States");
+        WebElement billingAddress = driver.findElement(By.xpath("(//div[@class='edit-address'])[1]"));
+        if (billingAddress.isDisplayed()) {
 
-        WebElement adressProvince = driver.findElement(By.xpath("//*[@id='BillingNewAddress_StateProvinceId']"));
-        Select ddMenuAdressProvince = new Select(adressProvince);
-        ddMenuAdressProvince.selectByVisibleText("Oklahoma");
+            WebElement adressCountry = driver.findElement(By.xpath("//*[@id='BillingNewAddress_CountryId']"));
+            Select ddMenuAdressCountry = new Select(adressCountry);
+            ddMenuAdressCountry.selectByVisibleText("United States");
 
-        WebElement adress = driver.findElement(By.xpath("//*[@id='BillingNewAddress_Address1']"));
-        actionsDriver.moveToElement(adress).click().sendKeys("10700 S MUSTANG RD MUSTANG OK 73064-9329 USA").build().perform();
+            WebElement adressProvince = driver.findElement(By.xpath("//*[@id='BillingNewAddress_StateProvinceId']"));
+            Select ddMenuAdressProvince = new Select(adressProvince);
+            ddMenuAdressProvince.selectByVisibleText("Oklahoma");
 
-        WebElement city = driver.findElement(By.xpath("//*[@id='BillingNewAddress_City']"));
-        actionsDriver.moveToElement(city).click().sendKeys("Oklahoma").build().perform();
+            WebElement adress = driver.findElement(By.xpath("//*[@id='BillingNewAddress_Address1']"));
+            actionsDriver.moveToElement(adress).click().sendKeys("10700 S MUSTANG RD MUSTANG OK 73064-9329 USA").build().perform();
 
-        WebElement zipCode = driver.findElement(By.xpath("//*[@id='BillingNewAddress_ZipPostalCode']"));
-        actionsDriver.moveToElement(zipCode).click().sendKeys("12345").build().perform();
+            WebElement city = driver.findElement(By.xpath("//*[@id='BillingNewAddress_City']"));
+            actionsDriver.moveToElement(city).click().sendKeys("Oklahoma").build().perform();
 
-        WebElement phoneNumber = driver.findElement(By.xpath("//*[@id='BillingNewAddress_PhoneNumber']"));
-        actionsDriver.moveToElement(phoneNumber).click().sendKeys("05542926146").build().perform();
+            WebElement zipCode = driver.findElement(By.xpath("//*[@id='BillingNewAddress_ZipPostalCode']"));
+            actionsDriver.moveToElement(zipCode).click().sendKeys("12345").build().perform();
 
-        WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
-        actionsDriver.moveToElement(continueButton).click().build().perform();
+            WebElement phoneNumber = driver.findElement(By.xpath("//*[@id='BillingNewAddress_PhoneNumber']"));
+            actionsDriver.moveToElement(phoneNumber).click().sendKeys("05542926146").build().perform();
+
+            WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
+            actionsDriver.moveToElement(continueButton).click().build().perform();
+
+
+        } else {
+            WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
+            actionsDriver.moveToElement(continueButton).click().build().perform();
+        }
 
         WebElement shippingAdress = driver.findElement(By.xpath("//*[@id='shipping-address-select']"));
         Assert.assertTrue(shippingAdress.getText().contains("MUSTANG"), "Shipping address is wrong");

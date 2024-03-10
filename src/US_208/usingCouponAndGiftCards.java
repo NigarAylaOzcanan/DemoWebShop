@@ -97,28 +97,37 @@ public class usingCouponAndGiftCards extends BaseDriver {
 
         Actions actionsDriver = new Actions(driver);
 
-        WebElement adressCountry = driver.findElement(By.xpath("//*[@id='BillingNewAddress_CountryId']"));
-        Select ddMenuAdressCountry = new Select(adressCountry);
-        ddMenuAdressCountry.selectByVisibleText("United States");
+        WebElement billingAddress = driver.findElement(By.xpath("(//div[@class='edit-address'])[1]"));
 
-        WebElement adressProvince = driver.findElement(By.xpath("//*[@id='BillingNewAddress_StateProvinceId']"));
-        Select ddMenuAdressProvince = new Select(adressProvince);
-        ddMenuAdressProvince.selectByVisibleText("Oklahoma");
+        if (billingAddress.isDisplayed()) {
 
-        WebElement adress = driver.findElement(By.xpath("//*[@id='BillingNewAddress_Address1']"));
-        actionsDriver.moveToElement(adress).click().sendKeys("10700 S MUSTANG RD MUSTANG OK 73064-9329 USA").build().perform();
+            WebElement adressCountry = driver.findElement(By.xpath("//*[@id='BillingNewAddress_CountryId']"));
+            Select ddMenuAdressCountry = new Select(adressCountry);
+            ddMenuAdressCountry.selectByVisibleText("United States");
 
-        WebElement city = driver.findElement(By.xpath("//*[@id='BillingNewAddress_City']"));
-        actionsDriver.moveToElement(city).click().sendKeys("Oklahoma").build().perform();
+            WebElement adressProvince = driver.findElement(By.xpath("//*[@id='BillingNewAddress_StateProvinceId']"));
+            Select ddMenuAdressProvince = new Select(adressProvince);
+            ddMenuAdressProvince.selectByVisibleText("Oklahoma");
 
-        WebElement zipCode = driver.findElement(By.xpath("//*[@id='BillingNewAddress_ZipPostalCode']"));
-        actionsDriver.moveToElement(zipCode).click().sendKeys("12345").build().perform();
+            WebElement adress = driver.findElement(By.xpath("//*[@id='BillingNewAddress_Address1']"));
+            actionsDriver.moveToElement(adress).click().sendKeys("10700 S MUSTANG RD MUSTANG OK 73064-9329 USA").build().perform();
 
-        WebElement phoneNumber = driver.findElement(By.xpath("//*[@id='BillingNewAddress_PhoneNumber']"));
-        actionsDriver.moveToElement(phoneNumber).click().sendKeys("05542926146").build().perform();
+            WebElement city = driver.findElement(By.xpath("//*[@id='BillingNewAddress_City']"));
+            actionsDriver.moveToElement(city).click().sendKeys("Oklahoma").build().perform();
 
-        WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
-        actionsDriver.moveToElement(continueButton).click().build().perform();
+            WebElement zipCode = driver.findElement(By.xpath("//*[@id='BillingNewAddress_ZipPostalCode']"));
+            actionsDriver.moveToElement(zipCode).click().sendKeys("12345").build().perform();
+
+            WebElement phoneNumber = driver.findElement(By.xpath("//*[@id='BillingNewAddress_PhoneNumber']"));
+            actionsDriver.moveToElement(phoneNumber).click().sendKeys("05542926146").build().perform();
+
+            WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
+            actionsDriver.moveToElement(continueButton).click().build().perform();
+
+        } else {
+            WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
+            actionsDriver.moveToElement(continueButton).click().build().perform();
+        }
 
         WebElement shippingAdress = driver.findElement(By.xpath("//*[@id='shipping-address-select']"));
         Assert.assertTrue(shippingAdress.getText().contains("MUSTANG"), "Shipping address is wrong");
