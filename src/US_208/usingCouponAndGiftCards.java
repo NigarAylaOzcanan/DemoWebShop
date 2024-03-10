@@ -1,4 +1,4 @@
-package US_206;
+package US_208;
 
 import Utility.BaseDriver;
 import Utility.Tools;
@@ -8,24 +8,17 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Ordering extends BaseDriver {
-    // CREDENTIALS:
-    // Firs Name: Caput
-    // Last Name: Draconis
-    // E-mail: caputdraconis183@gmail.com
-    // Password: Lord@183.
-
-    @BeforeClass
-    public void setUp() {
+public class usingCouponAndGiftCards extends BaseDriver {
+    @Test
+    public void Test1() {
+        // CREDENTIALS:
+        // Firs Name: Caput
+        // Last Name: Draconis
+        // E-mail: caputdraconis183@gmail.com
+        // Password: Lord@183.
         driver.get("https://demowebshop.tricentis.com/");
-    }
-
-    @Test(priority = 1)
-    public void login() {
         Actions actionsDriver = new Actions(driver);
 
         WebElement logIn = driver.findElement(By.xpath("//a[text()='Log in']"));
@@ -39,13 +32,6 @@ public class Ordering extends BaseDriver {
 
         WebElement loginButton = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
         actionsDriver.moveToElement(loginButton).click().build().perform();
-
-    }
-
-    @Test(priority = 2)
-    public void orderingAndControl() {
-
-        Actions actionsDriver = new Actions(driver);
 
         WebElement computers = driver.findElement(By.cssSelector("[class='inactive']:nth-child(2)>a"));
         actionsDriver.moveToElement(computers).click().build().perform();
@@ -61,6 +47,22 @@ public class Ordering extends BaseDriver {
 
         WebElement emptyValidation = driver.findElement(By.xpath("(//*[@class='product-name'])"));
         Assert.assertTrue(emptyValidation.getText().contains("Laptop"), "Your Shopping Cart is empty");
+
+        WebElement discountCode = driver.findElement(By.xpath("//input[@name='applydiscountcouponcode']"));
+        actionsDriver.moveToElement(discountCode).click().build().perform();
+
+        WebElement discountWarning = driver.findElement(By.xpath("//div[@class='message']"));
+        wait.until(ExpectedConditions.visibilityOf(discountWarning));
+
+        Assert.assertTrue(discountWarning.isDisplayed(), "Coupon code correct");
+
+        WebElement giftCards = driver.findElement(By.xpath("//input[@name='applygiftcardcouponcode']"));
+        actionsDriver.moveToElement(giftCards).click().build().perform();
+
+        WebElement giftWarning = driver.findElement(By.xpath("//div[@class='message']"));
+        wait.until(ExpectedConditions.visibilityOf(giftWarning));
+
+        Assert.assertTrue(giftWarning.isDisplayed(), "Gift cards code correct");
 
         WebElement country = driver.findElement(By.xpath("//*[@id='CountryId']"));
         Select ddMenuCountry = new Select(country);
@@ -165,10 +167,6 @@ public class Ordering extends BaseDriver {
         WebElement continueButton5 = driver.findElement(By.xpath("//input[@class='button-2 order-completed-continue-button']"));
         actionsDriver.moveToElement(continueButton5).click().build().perform();
 
-    }
-
-    @AfterClass
-    public void tearDown() {
         waitAndClose();
     }
 }
