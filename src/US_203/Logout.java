@@ -13,6 +13,11 @@ import org.testng.annotations.Test;
 
 public class Logout extends BaseDriver {
 
+    // CREDENTIALS:
+    // Name: TestUser
+    // Surname: Tester
+    // E-mail: lalot13449@artgulin.com
+    // Password: Not4You2Know
     @BeforeClass
     public void setUp() {
 
