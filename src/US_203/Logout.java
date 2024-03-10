@@ -91,7 +91,7 @@ public class Logout extends BaseDriver {
                 .build()
                 .perform();
 
-        // The user should be successfully logged out from the account.
+        // Verify that the user has successfully logged out of the account.
         WebElement successfullLogOut=
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" //a[contains(text(),'Log in')]")));
 
