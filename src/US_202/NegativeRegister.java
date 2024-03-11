@@ -9,15 +9,25 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
 public class NegativeRegister extends BaseDriver {
+
+    //The user should be able to see the message "Specified Email Address Already Exists"
+    // CREDENTIALS:
+    // Name: Beyza
+    // Surname: ER
+    // E-mail: beyzanur.er@outlook.com
+    // Password: Beyza123.
     @Test
     public void Test1(){
         Actions actionsDriver = new Actions(driver);
 
+        //Open the browser and navigate to the homepage of the "demowebshop.tricentis.com/"
         driver.get("https://demowebshop.tricentis.com/");
 
+        //Click on the Register button on the homepage
         WebElement register=driver.findElement(By.xpath("//a[text()='Register']"));
         actionsDriver.moveToElement(register).click().build().perform();
 
+        //Fill in the "Name, Surname, Gender, E-Mail, Password and Password Verification" fields on the registration page
         WebElement gender=driver.findElement(By.xpath("//*[@id='gender-female']"));
         actionsDriver.moveToElement(gender).click().build().perform();
 
@@ -36,9 +46,11 @@ public class NegativeRegister extends BaseDriver {
         WebElement confirmPassword=driver.findElement(By.xpath("//*[@id='ConfirmPassword']"));
         actionsDriver.moveToElement(confirmPassword).click().sendKeys("Beyza123.").build().perform();
 
+        //Click on the Register button
         WebElement registerButton=driver.findElement(By.xpath("//*[@id='register-button']"));
         actionsDriver.moveToElement(registerButton).click().build().perform();
 
+        //Try to sign up with the same email address.
         WebElement messageText= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='The specified email already exists']")));
         Assert.assertTrue(" ",messageText.getText().equals("The specified email already exists"));
         System.out.println(messageText.getText());
