@@ -42,7 +42,7 @@ This project is aimed at testing various functionalities of a web store using Se
   
 - WebDriverManager (for managing browser drivers)
   
-- Apache POI 
+
 
 
 ## **Getting Started**
