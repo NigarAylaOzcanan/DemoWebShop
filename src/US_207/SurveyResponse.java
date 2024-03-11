@@ -34,7 +34,8 @@ public class SurveyResponse extends BaseDriver {
         Actions actionsDriver = new Actions(driver);
 
         // Select the "Excellent" option to answer the questionnaire. (Voting option: "Excellent")
-        WebElement answerPoll = driver.findElement(By.xpath("//label[contains(text(),'Excellent')]"));
+        WebElement answerPoll =
+        driver.findElement(By.xpath("//label[contains(text(),'Excellent')]"));
         actionsDriver
                 .moveToElement(answerPoll)
                 .click()
@@ -42,16 +43,17 @@ public class SurveyResponse extends BaseDriver {
                 .perform();
 
         // And click on the "Submit" button
-        WebElement voteButton = driver.findElement(By.cssSelector("#vote-poll-1:nth-child(1)"));
+        WebElement voteButton =
+        driver.findElement(By.cssSelector("#vote-poll-1:nth-child(1)"));
         actionsDriver
                 .moveToElement(voteButton)
                 .click()
-                .build()
-                .perform();
+                .build();
 
         // if not logged in, a warning message such as 'Only Registered Users Can Vote' should be displayed.
         WebElement warningMsg =
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@id='block-poll-vote-error-1'])[1]")));
+
         Assert.assertTrue(warningMsg.isDisplayed());
         System.out.println("Warning message: " + warningMsg.getText());
 
@@ -99,9 +101,11 @@ public class SurveyResponse extends BaseDriver {
                 .click()
                 .build()
                 .perform();
+
         // Verify that the username or e-mail appears in the upper right corner after logging in.
         WebElement successfullLogin=
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'lalot13449@artgulin.com')]")));
+
         Assert.assertTrue(successfullLogin.isDisplayed(),"Login was unsuccessful.");
         System.out.println("Login Is Successful. The results of the survey are displayed below.");
     }
@@ -111,11 +115,12 @@ public class SurveyResponse extends BaseDriver {
         // After logging in: The user should be able to see the voting rates.
         // And the rates should display the total votes.
         WebElement totalVotes= driver.findElement(By.xpath("(//span[@class='poll-total-votes'])[1]"));
+
         Assert.assertTrue(totalVotes.isDisplayed(),"Result page is not displayed!");
         System.out.println("Survey Result: " + totalVotes.getText());
     }
     @AfterClass
     public void tearDown(){
-        waitAndClose();
+        driver.quit();
     }
 }
