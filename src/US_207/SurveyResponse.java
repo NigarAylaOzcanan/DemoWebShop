@@ -61,14 +61,17 @@ public class SurveyResponse extends BaseDriver {
 
         Actions actionsDriver = new Actions(driver);
 
+        // Enter the valid credentials in the placeholders provided.
+        // Valid e-mail
         WebElement logIn =
-         driver.findElement(By.xpath("//a[@class='ico-login']"));
+        driver.findElement(By.xpath("//a[@class='ico-login']"));
         actionsDriver
                 .moveToElement(logIn)
                 .click()
                 .build()
                 .perform();
 
+        // Valid Password
         WebElement eMail =
         driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
         actionsDriver
@@ -78,6 +81,7 @@ public class SurveyResponse extends BaseDriver {
                 .build()
                 .perform();
 
+        // Valid password
         WebElement password =
         driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
         actionsDriver
@@ -86,7 +90,7 @@ public class SurveyResponse extends BaseDriver {
                 .sendKeys("Not4You2Know")
                 .build()
                 .perform();
-
+        // Click on the "Log in" button
         WebElement loginButton =
         driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
         actionsDriver
@@ -94,6 +98,7 @@ public class SurveyResponse extends BaseDriver {
                 .click()
                 .build()
                 .perform();
+        // Verify that the username or e-mail appears in the upper right corner after logging in.
         WebElement successfullLogin=
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(text(),'lalot13449@artgulin.com')]")));
         Assert.assertTrue(successfullLogin.isDisplayed(),"Login was unsuccessful.");
@@ -102,14 +107,14 @@ public class SurveyResponse extends BaseDriver {
     @Test (priority = 3, dependsOnMethods = {"answerPollWithoutLogin","login"} )
     public void surveyRateResults(){
 
+        // After logging in: The user should be able to see the voting rates.
+        // And the rates should display the total votes.
         WebElement totalVotes= driver.findElement(By.xpath("//span[contains(text(),'7550 vote(s)...')]"));
         Assert.assertTrue(totalVotes.isDisplayed(),"Result page is not displayed!");
         System.out.println("Survey Result: " + totalVotes.getText());
-
     }
     @AfterClass
     public void tearDown(){
-        Tools.wait(3);
-        driver.quit();
+        waitAndClose();
     }
 }
