@@ -4,6 +4,8 @@ import Utility.BaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -47,6 +49,22 @@ public class Order_History extends BaseDriver {
         WebElement myAccount = driver.findElement(By.xpath("//div[@class=\"header-links\"]" +
                 "//a[@class=\"account\"]"));
         actions.click(myAccount).build().perform();
+
+        // Click Orders Tab
+        WebElement ordersBtn = driver.findElement(By.linkText("Orders"));
+        actions.click(ordersBtn).build().perform();
+
+        // Check if details button exist
+        WebElement orderDetailsBtn = driver.findElement(By.cssSelector("[value=\"Details\"]"));
+
+        Assert.assertTrue(orderDetailsBtn.isDisplayed(),"Cannot Find Details Button");
+
+        actions.click(orderDetailsBtn).build().perform();
+
+
+
+
+
 
     }
 
