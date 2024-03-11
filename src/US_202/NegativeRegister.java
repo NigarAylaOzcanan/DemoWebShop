@@ -1,9 +1,11 @@
 package US_202;
 
 import Utility.BaseDriver;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
 public class NegativeRegister extends BaseDriver {
@@ -13,7 +15,7 @@ public class NegativeRegister extends BaseDriver {
 
         driver.get("https://demowebshop.tricentis.com/");
 
-        WebElement register=driver.findElement(By.xpath("//*[@class='ico-register']"));
+        WebElement register=driver.findElement(By.xpath("//a[text()='Register']"));
         actionsDriver.moveToElement(register).click().build().perform();
 
         WebElement gender=driver.findElement(By.xpath("//*[@id='gender-female']"));
@@ -34,13 +36,15 @@ public class NegativeRegister extends BaseDriver {
         WebElement confirmPassword=driver.findElement(By.xpath("//*[@id='ConfirmPassword']"));
         actionsDriver.moveToElement(confirmPassword).click().sendKeys("Beyza123.").build().perform();
 
+        WebElement registerButton=driver.findElement(By.xpath("//*[@id='register-button']"));
+        actionsDriver.moveToElement(registerButton).click().build().perform();
 
+        WebElement messageText= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='The specified email already exists']")));
+        Assert.assertTrue(" ",messageText.getText().equals("The specified email already exists"));
+        System.out.println(messageText.getText());
 
-
-
-
-
-
+        waitAndClose();
+        
 
     }
 }
