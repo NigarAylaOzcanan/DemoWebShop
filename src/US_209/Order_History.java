@@ -39,6 +39,10 @@ public class Order_History extends BaseDriver {
         WebElement passwordPlc = driver.findElement(By.id("Password"));
         actions.sendKeys(passwordPlc, "password258").build().perform();
 
+        // Navigate to account page
+        WebElement myAccount = driver.findElement(By.xpath("//div[@class=\"header-links\"]" +
+                "//a[@class=\"account\"]"));
+        actions.click(myAccount).build().perform();
 
     }
 
