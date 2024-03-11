@@ -9,6 +9,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class Order_History extends BaseDriver {
+
+    // Credentials:
+    // Site -> https://demowebshop.tricentis.com/"
+    // Email -> mefeget417@sfpixel.com
+    // Password -> password258
+
+
     Actions actions = new Actions(driver);
 
     @BeforeClass
@@ -22,6 +29,16 @@ public class Order_History extends BaseDriver {
         // Click on the login button
         WebElement loginBtn = driver.findElement(By.linkText("Log in"));
         actions.click(loginBtn).build().perform();
+
+        // Filling E-Mail placholder
+        WebElement emailPlc = driver.findElement(By.id("Email"));
+        actions.sendKeys(emailPlc, "mefeget417@sfpixel.com").build().perform();
+
+
+        // Filling Password placholder
+        WebElement passwordPlc = driver.findElement(By.id("Password"));
+        actions.sendKeys(passwordPlc, "password258").build().perform();
+
 
     }
 
