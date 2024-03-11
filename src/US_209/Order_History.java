@@ -32,12 +32,12 @@ public class Order_History extends BaseDriver {
         WebElement loginBtn = driver.findElement(By.linkText("Log in"));
         actions.click(loginBtn).build().perform();
 
-        // Filling E-Mail placholder
+        // Filling E-Mail placeholder
         WebElement emailPlc = driver.findElement(By.id("Email"));
         actions.sendKeys(emailPlc, "mefeget417@sfpixel.com").build().perform();
 
 
-        // Filling Password placholder
+        // Filling Password placeholder
         WebElement passwordPlc = driver.findElement(By.id("Password"));
         actions.sendKeys(passwordPlc, "password258").build().perform();
 
@@ -56,16 +56,18 @@ public class Order_History extends BaseDriver {
 
         // Check if details button exist
         WebElement orderDetailsBtn = driver.findElement(By.cssSelector("[value=\"Details\"]"));
-
-        Assert.assertTrue(orderDetailsBtn.isDisplayed(),"Cannot Find Details Button");
+        Assert.assertTrue(orderDetailsBtn.isDisplayed(), "Cannot Find Details Button");
 
         actions.click(orderDetailsBtn).build().perform();
 
 
+        // Is "Order Information" text displayed ?
+        WebElement orderInformationtxt = driver.findElement(By.cssSelector("div[class=\"page-title\"] > h1"));
+        Assert.assertTrue(orderInformationtxt.isDisplayed(), "Order Information text doesn't exist");
 
-
-
-
+        WebElement pdfInvoiceBtn = driver.findElement(By.linkText("PDF Invoice"));
+        Assert.assertTrue(pdfInvoiceBtn.isEnabled());
+        actions.click(pdfInvoiceBtn).build().perform();
     }
 
 
