@@ -72,24 +72,25 @@ public class SurveyResponse extends BaseDriver {
                 .perform();
 
         // Valid Password
-        WebElement eMail =
-        driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
+        String emailStr="lalot13449@artgulin.com";
+        WebElement eMail = driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
         actionsDriver
                 .moveToElement(eMail)
                 .click()
-                .sendKeys("lalot13449@artgulin.com")
+                .sendKeys(emailStr)
                 .build()
                 .perform();
 
         // Valid password
-        WebElement password =
-        driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
+        String passwordStr="Not4You2Know";
+        WebElement password = driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
         actionsDriver
                 .moveToElement(password)
                 .click()
-                .sendKeys("Not4You2Know")
+                .sendKeys(passwordStr)
                 .build()
                 .perform();
+
         // Click on the "Log in" button
         WebElement loginButton =
         driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
@@ -109,7 +110,7 @@ public class SurveyResponse extends BaseDriver {
 
         // After logging in: The user should be able to see the voting rates.
         // And the rates should display the total votes.
-        WebElement totalVotes= driver.findElement(By.xpath("//span[contains(text(),'7550 vote(s)...')]"));
+        WebElement totalVotes= driver.findElement(By.xpath("(//span[@class='poll-total-votes'])[1]"));
         Assert.assertTrue(totalVotes.isDisplayed(),"Result page is not displayed!");
         System.out.println("Survey Result: " + totalVotes.getText());
     }
