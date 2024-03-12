@@ -36,19 +36,12 @@ public class SurveyResponse extends BaseDriver {
         // Select the "Excellent" option to answer the questionnaire. (Voting option: "Excellent")
         WebElement answerPoll =
         driver.findElement(By.xpath("//label[contains(text(),'Excellent')]"));
-        actionsDriver
-                .moveToElement(answerPoll)
-                .click()
-                .build()
-                .perform();
+        actionsDriver.moveToElement(answerPoll).click().build().perform();
 
         // And click on the "Submit" button
         WebElement voteButton =
         driver.findElement(By.cssSelector("#vote-poll-1:nth-child(1)"));
-        actionsDriver
-                .moveToElement(voteButton)
-                .click()
-                .build();
+        actionsDriver.moveToElement(voteButton).click().build();
 
         // if not logged in, a warning message such as 'Only Registered Users Can Vote' should be displayed.
         WebElement warningMsg =
@@ -67,40 +60,22 @@ public class SurveyResponse extends BaseDriver {
         // Valid e-mail
         WebElement logIn =
         driver.findElement(By.xpath("//a[@class='ico-login']"));
-        actionsDriver
-                .moveToElement(logIn)
-                .click()
-                .build()
-                .perform();
+        actionsDriver.moveToElement(logIn).click().build().perform();
 
         // Valid Password
         String emailStr="lalot13449@artgulin.com";
         WebElement eMail = driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
-        actionsDriver
-                .moveToElement(eMail)
-                .click()
-                .sendKeys(emailStr)
-                .build()
-                .perform();
+        actionsDriver.moveToElement(eMail).click().sendKeys(emailStr).build().perform();
 
         // Valid password
         String passwordStr="Not4You2Know";
         WebElement password = driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
-        actionsDriver
-                .moveToElement(password)
-                .click()
-                .sendKeys(passwordStr)
-                .build()
-                .perform();
+        actionsDriver.moveToElement(password).click().sendKeys(passwordStr).build().perform();
 
         // Click on the "Log in" button
         WebElement loginButton =
         driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        actionsDriver
-                .moveToElement(loginButton)
-                .click()
-                .build()
-                .perform();
+        actionsDriver.moveToElement(loginButton).click().build().perform();
 
         // Verify that the username or e-mail appears in the upper right corner after logging in.
         WebElement successfullLogin=
@@ -121,6 +96,7 @@ public class SurveyResponse extends BaseDriver {
     }
     @AfterClass
     public void tearDown(){
+        Tools.wait(3);
         driver.quit();
     }
 }
