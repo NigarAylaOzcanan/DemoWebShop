@@ -30,45 +30,28 @@ public class Logout extends BaseDriver {
     }
     @Test  (priority = 1)
     public void logIn() {
+
         Actions actionsDriver = new Actions(driver);
 
         // Click on the "Log in" link in the upper right corner.
         WebElement logIn =
         driver.findElement(By.xpath("//a[@class='ico-login']"));
-        actionsDriver
-                .moveToElement(logIn)
-                .click()
-                .build()
-                .perform();
+        actionsDriver.moveToElement(logIn).click().build().perform();
 
         // Enter the valid credentials in the placeholders provided.
         // Valid e-mail
         WebElement eMail =
         driver.findElement(By.xpath("//input[@id='Email' and @name='Email']"));
-        actionsDriver
-                .moveToElement(eMail)
-                .click()
-                .sendKeys("lalot13449@artgulin.com")
-                .build()
-                .perform();
+        actionsDriver.moveToElement(eMail).click().sendKeys("lalot13449@artgulin.com").build().perform();
 
         // Valid password
         WebElement password =
         driver.findElement(By.xpath("//input[@id='Password' and @name='Password']"));
-        actionsDriver
-                .moveToElement(password)
-                .click()
-                .sendKeys("Not4You2Know")
-                .build()
-                .perform();
+        actionsDriver.moveToElement(password).click().sendKeys("Not4You2Know").build().perform();
         // Click on the "Log in" button
         WebElement loginButton =
         driver.findElement(By.xpath("//input[@class='button-1 login-button']"));
-        actionsDriver
-                .moveToElement(loginButton)
-                .click()
-                .build()
-                .perform();
+        actionsDriver.moveToElement(loginButton).click().build().perform();
 
         // Verify that the username or e-mail appears in the upper right corner after logging in.
         WebElement successfullLogin=
@@ -85,18 +68,13 @@ public class Logout extends BaseDriver {
         // Click on the "Log out" link in the upper right corner.
         WebElement logOut =
         driver.findElement(By.xpath("//a[contains(text(),'Log out')]"));
-        actionsDriver
-                .moveToElement(logOut)
-                .click()
-                .build()
-                .perform();
+        actionsDriver.moveToElement(logOut).click().build().perform();
 
         // Verify that the user has successfully logged out of the account.
         WebElement successfullLogOut=
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(" //a[contains(text(),'Log in')]")));
 
         Assert.assertTrue(successfullLogOut.isDisplayed(), "Logout is unsuccessful");
-
         System.out.println("Logout Is Successful.");
 
     }
