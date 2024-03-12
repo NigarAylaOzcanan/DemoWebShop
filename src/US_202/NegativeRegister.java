@@ -1,11 +1,11 @@
 package US_202;
 
 import Utility.BaseDriver;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NegativeRegister extends BaseDriver {
@@ -52,11 +52,10 @@ public class NegativeRegister extends BaseDriver {
 
         //Try to sign up with the same email address.
         WebElement messageText= wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='The specified email already exists']")));
-        Assert.assertTrue(" ",messageText.getText().equals("The specified email already exists"));
+        Assert.assertTrue(messageText.getText().equals("The specified email already exists")," ");
         System.out.println(messageText.getText());
 
         waitAndClose();
-        
 
     }
 }
