@@ -74,7 +74,7 @@ public class Login<dependsOnMethods, priority> extends BaseDriver {
         // Enter the valid credentials in the placeholders provided.
         // Valid e-mail
         WebElement logIn =
-                driver.findElement(By.xpath("//a[@class='ico-login']"));
+                driver.findElement(By.xpath ("//a[@class='ico-login']"));
         actionsDriver.moveToElement(logIn).click().build().perform();
 
         // Valid Password
