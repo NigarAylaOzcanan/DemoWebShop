@@ -24,7 +24,7 @@ public class NegativeRegister extends BaseDriver {
         //Open the browser and navigate to the homepage of the "demowebshop.tricentis.com/"
         driver.get("https://demowebshop.tricentis.com/");
 
-        //Click on the Register button on the homepage
+        //Click on the Register button on the homepage.
         WebElement register = driver.findElement(By.xpath("//a[text()='Register']"));
         actionsDriver.moveToElement(register).click().build().perform();
 
