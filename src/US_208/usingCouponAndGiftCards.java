@@ -44,6 +44,9 @@ public class usingCouponAndGiftCards extends BaseDriver {
 
     @Test(priority = 2)
     public void discountCodeAndGiftCards() {
+
+        //The process of adding the product to the cart
+
         Actions actionsDriver = new Actions(driver);
 
         WebElement computers = driver.findElement(By.cssSelector("[class='inactive']:nth-child(2)>a"));
@@ -61,6 +64,7 @@ public class usingCouponAndGiftCards extends BaseDriver {
         WebElement emptyValidation = driver.findElement(By.xpath("(//*[@class='product-name'])"));
         Assert.assertTrue(emptyValidation.getText().contains("Laptop"), "Your Shopping Cart is empty");
 
+        //When we enter a blank discount code for the product, we receive a warning
         WebElement discountCode = driver.findElement(By.xpath("//input[@name='applydiscountcouponcode']"));
         actionsDriver.moveToElement(discountCode).click().build().perform();
 
@@ -69,6 +73,7 @@ public class usingCouponAndGiftCards extends BaseDriver {
 
         Assert.assertTrue(discountWarning.isDisplayed(), "Coupon code correct");
 
+        //The warning we receive when the product's gift coupon is entered blank
         WebElement giftCards = driver.findElement(By.xpath("//input[@name='applygiftcardcouponcode']"));
         actionsDriver.moveToElement(giftCards).click().build().perform();
 
@@ -94,11 +99,12 @@ public class usingCouponAndGiftCards extends BaseDriver {
 
     @Test(priority = 3)
     public void orderingAndControl() {
-
         Actions actionsDriver = new Actions(driver);
 
         WebElement billingAddress = driver.findElement(By.xpath("(//div[@class='edit-address'])[1]"));
 
+        //Completion of payment information
+        //If there is no address information
         if (billingAddress.isDisplayed()) {
 
             WebElement adressCountry = driver.findElement(By.xpath("//*[@id='BillingNewAddress_CountryId']"));
@@ -124,7 +130,7 @@ public class usingCouponAndGiftCards extends BaseDriver {
             WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
             actionsDriver.moveToElement(continueButton).click().build().perform();
 
-        } else {
+        } else {//if you have address details
             WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
             actionsDriver.moveToElement(continueButton).click().build().perform();
         }
@@ -174,6 +180,8 @@ public class usingCouponAndGiftCards extends BaseDriver {
         WebElement continueButton4 = driver.findElement(By.xpath("//*[@class='button-1 payment-info-next-step-button']"));
         actionsDriver.moveToElement(continueButton4).click().build().perform();
 
+        //Control of product price and total price
+
         WebElement price = driver.findElement(By.cssSelector("[class='product-unit-price']"));
         String priceStr = price.getText();
         double priceInt = Double.parseDouble(priceStr);
@@ -186,6 +194,8 @@ public class usingCouponAndGiftCards extends BaseDriver {
 
         WebElement confirm = driver.findElement(By.cssSelector("[class='button-1 confirm-order-next-step-button']"));
         actionsDriver.moveToElement(confirm).click().build().perform();
+
+        //Control of the order of the product
 
         wait.until(ExpectedConditions.urlToBe("https://demowebshop.tricentis.com/checkout/completed/"));
         WebElement titleValidation = driver.findElement(By.cssSelector("[class='title'] strong"));
