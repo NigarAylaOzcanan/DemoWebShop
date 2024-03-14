@@ -28,6 +28,7 @@ public class Ordering extends BaseDriver {
 
     @Test(priority = 1)
     public void login() {
+        //User login process
         Actions actionsDriver = new Actions(driver);
 
         WebElement logIn = driver.findElement(By.xpath("//a[text()='Log in']"));
@@ -46,6 +47,8 @@ public class Ordering extends BaseDriver {
 
     @Test(priority = 2)
     public void orderingAndControl() {
+
+        //The process of adding the product to the cart
 
         Actions actionsDriver = new Actions(driver);
 
@@ -78,6 +81,8 @@ public class Ordering extends BaseDriver {
         WebElement checkOut = driver.findElement(By.xpath("//*[@id='checkout']"));
         actionsDriver.moveToElement(checkOut).click().build().perform();
 
+        //Completion of payment information
+        //If there is no address information
         WebElement billingAddress = driver.findElement(By.xpath("(//div[@class='edit-address'])[1]"));
         if (billingAddress.isDisplayed()) {
 
@@ -105,7 +110,7 @@ public class Ordering extends BaseDriver {
             actionsDriver.moveToElement(continueButton).click().build().perform();
 
 
-        } else {
+        } else {//if you have address details
             WebElement continueButton = driver.findElement(By.xpath("//*[@id='billing-buttons-container']/input"));
             actionsDriver.moveToElement(continueButton).click().build().perform();
         }
@@ -155,6 +160,7 @@ public class Ordering extends BaseDriver {
         WebElement continueButton4 = driver.findElement(By.xpath("//*[@class='button-1 payment-info-next-step-button']"));
         actionsDriver.moveToElement(continueButton4).click().build().perform();
 
+        //control of product price and total price
         WebElement price = driver.findElement(By.cssSelector("[class='product-unit-price']"));
         String priceStr = price.getText();
         double priceInt = Double.parseDouble(priceStr);
@@ -168,6 +174,7 @@ public class Ordering extends BaseDriver {
         WebElement confirm = driver.findElement(By.cssSelector("[class='button-1 confirm-order-next-step-button']"));
         actionsDriver.moveToElement(confirm).click().build().perform();
 
+        //control of the order of the product
         wait.until(ExpectedConditions.urlToBe("https://demowebshop.tricentis.com/checkout/completed/"));
         WebElement titleValidation = driver.findElement(By.cssSelector("[class='title'] strong"));
         System.out.println(titleValidation.getText());
