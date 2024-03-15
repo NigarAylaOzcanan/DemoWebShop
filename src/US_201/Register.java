@@ -1,10 +1,10 @@
 package US_201;
 import Utility.Tools;
-import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import Utility.BaseDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 public class Register extends BaseDriver {
     @Test
