@@ -1,12 +1,10 @@
-package US_201;
 import Utility.Tools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import Utility.BaseDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-public class Register extends BaseDriver {
+public class US_201_Register extends BaseDriver {
     @Test
     public void registerTest() {
 
@@ -45,7 +43,6 @@ public class Register extends BaseDriver {
         } catch (Exception e) {
             System.out.println("Kayıt var. Bu adımı geçebiliriz.");
         }
-        waitAndClose();
     }
 }
 

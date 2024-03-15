@@ -12,6 +12,8 @@ This project is aimed at testing various functionalities of a web store using Se
 
 **Logout (US 203):** This user story revolves around the capability for users to securely log out from their accounts on the web store platform. Logging out ensures the safety of the user's account and personal information, especially if they are accessing the platform from shared or public devices.
 
+**Login (US 204):** This user story is about users logging into our web store. Logging in allows users to manage their account, track orders, and access features easily. We'll ensure a smooth login process by testing different scenarios like correct and incorrect credentials. Clear error messages will guide users if any issues arise, making the login experience secure and user-friendly.
+
 **Negative Login (US 205):** Similar to US 202, this user story pertains to handling error scenarios, but during the login process. It involves testing various negative scenarios, such as incorrect credentials or account lockouts, to ensure that the login mechanism is robust and secure against unauthorized access.
 
 **Ordering (US 206):** This user story deals with the functionality for users to place orders for products available on the web store platform. It typically involves selecting items, adding them to a cart, providing payment details (such as credit card information), and completing the purchase process.

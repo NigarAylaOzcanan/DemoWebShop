@@ -1,5 +1,3 @@
-package US_203;
-
 import Utility.BaseDriver;
 import Utility.Tools;
 import org.openqa.selenium.By;
@@ -11,7 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Logout extends BaseDriver {
+public class US_203_Logout extends BaseDriver {
 
     /* Verify whether the user is able to
        successfully log out of his/her account.*/
@@ -22,12 +20,6 @@ public class Logout extends BaseDriver {
     // E-mail: lalot13449@artgulin.com
     // Password: Not4You2Know
 
-    @BeforeClass
-    public void setUp() {
-
-        // Open the browser and navigate to the website
-        driver.navigate().to("https://demowebshop.tricentis.com/");
-    }
     @Test  (priority = 1)
     public void logIn() {
 
@@ -77,10 +69,5 @@ public class Logout extends BaseDriver {
         Assert.assertTrue(successfullLogOut.isDisplayed(), "Logout is unsuccessful");
         System.out.println("Logout Is Successful.");
 
-    }
-    @AfterClass
-    public void tearDown(){
-        Tools.wait(3);
-        driver.quit();
     }
 }

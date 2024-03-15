@@ -1,5 +1,3 @@
-package US_207;
-
 import Utility.BaseDriver;
 import Utility.Tools;
 import org.openqa.selenium.By;
@@ -9,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class SurveyResponse extends BaseDriver {
+public class US_207_SurveyResponse extends BaseDriver {
 
    /** single-line comments have been added for clarity.*/
    /*  Ensure that the user can actively engage with the community poll,
@@ -22,12 +20,6 @@ public class SurveyResponse extends BaseDriver {
    // E-mail: lalot13449@artgulin.com
    // Password: Not4You2Know
 
-    @BeforeClass
-    public void setUp() {
-
-        // Open the browser and navigate to the website
-        driver.navigate().to("https://demowebshop.tricentis.com/");
-    }
     @Test(priority = 1)
     public void answerPollWithoutLogin() {
 
@@ -96,10 +88,5 @@ public class SurveyResponse extends BaseDriver {
 
         Assert.assertTrue(totalVotes.isDisplayed(),"Result page is not displayed!");
         System.out.println("Survey Result: " + totalVotes.getText());
-    }
-    @AfterClass
-    public void tearDown(){
-        Tools.wait(3);
-        driver.quit();
     }
 }

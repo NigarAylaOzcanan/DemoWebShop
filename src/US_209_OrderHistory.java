@@ -1,31 +1,18 @@
-package US_209;
-
 import Utility.BaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-public class Order_History extends BaseDriver {
+public class US_209_OrderHistory extends BaseDriver {
 
     // Credentials:
     // Site -> https://demowebshop.tricentis.com/"
     // Email -> mefeget417@sfpixel.com
     // Password -> password258
-
-
     Actions actions = new Actions(driver);
-
-    @BeforeClass
-    public void InitialProcedure() {
-        // Go to site
-        driver.get("https://demowebshop.tricentis.com/");
-    }
-
     @Test
     public void OrderHistory() {
         // Click on the login button
@@ -35,7 +22,6 @@ public class Order_History extends BaseDriver {
         // Filling E-Mail placeholder
         WebElement emailPlc = driver.findElement(By.id("Email"));
         actions.sendKeys(emailPlc, "mefeget417@sfpixel.com").build().perform();
-
 
         // Filling Password placeholder
         WebElement passwordPlc = driver.findElement(By.id("Password"));
@@ -60,7 +46,6 @@ public class Order_History extends BaseDriver {
 
         actions.click(orderDetailsBtn).build().perform();
 
-
         // Is "Order Information" text displayed ?
         WebElement orderInformationtxt = driver.findElement(By.cssSelector("div[class=\"page-title\"] > h1"));
         Assert.assertTrue(orderInformationtxt.isDisplayed(), "Order Information text doesn't exist");
@@ -68,12 +53,5 @@ public class Order_History extends BaseDriver {
         WebElement pdfInvoiceBtn = driver.findElement(By.linkText("PDF Invoice"));
         Assert.assertTrue(pdfInvoiceBtn.isEnabled());
         actions.click(pdfInvoiceBtn).build().perform();
-    }
-
-
-    @AfterClass
-    public void CloseProcedure() {
-        // End Procedure
-        waitAndClose();
     }
 }

@@ -1,5 +1,3 @@
-package US_202;
-
 import Utility.BaseDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
-public class NegativeRegister extends BaseDriver {
+public class US_202_NegativeRegister extends BaseDriver {
 
     //The user should be able to see the message "Specified Email Address Already Exists"
     // CREDENTIALS:
@@ -20,9 +18,6 @@ public class NegativeRegister extends BaseDriver {
     @Test
     public void Test1() {
         Actions actionsDriver = new Actions(driver);
-
-        //Open the browser and navigate to the homepage of the "demowebshop.tricentis.com/"
-        driver.get("https://demowebshop.tricentis.com/");
 
         //Click on the Register button on the homepage.
         WebElement register = driver.findElement(By.xpath("//a[text()='Register']"));
@@ -55,8 +50,6 @@ public class NegativeRegister extends BaseDriver {
         WebElement messageText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[text()='The specified email already exists']")));
         Assert.assertTrue(messageText.getText().equals("The specified email already exists"), " ");
         System.out.println(messageText.getText());
-
-        waitAndClose();
 
     }
 }
