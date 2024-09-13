@@ -59,19 +59,51 @@ To run the tests locally, follow these steps:
    
 4. Update the test scripts in the project to reflect the specific test scenarios and requirements.
 
+## CONTRIBUTION:
 
-## CONTRIBUTORS:
+| Contributor                                               | Role                                  |
+|-----------------------------------------------------------|---------------------------------------|
+| [Nigar Ayla Özcanan](https://github.com/NigarAylaOzcanan) | Project Lead & QA Automation Engineer |
+| [Erdem Gürel](https://github.com/artam109)                | QA Automation Engineer                |
+| [Onur Girgin](https://github.com/Mednasa)                 | QA Automation Engineer                |
+| [Beyzanur Er](https://github.com/beyzanurer)              | QA Automation Engineer                |
+| [Ahmet Kaya](https://github.com/0AhmetKaya0)              | QA Automation Engineer                |
+| [Ömer Faruk Ayrıç](https://github.com/faruk-ayrcc25)      | QA Automation Engineer                |
+| [Şeyma Nur Aladağ](https://github.com/SeymaNur44)         | QA Automation Engineer                |
 
-https://github.com/NigarAylaOzcanan 
+Contributions are welcome! If you find any issues or want to add more tests, feel free to open a pull request.
+Please follow these steps to contribute:
 
-https://github.com/Mednasa 
+- Fork the repository.
+- Create a new branch for your feature or bugfix.
+- Make your changes and commit them.
+- Push to your branch.
+- Create a pull request.
 
-https://github.com/Artam22  
+## Pull Request Rules
 
-https://github.com/0AhmetKaya0 
+When contributing to this project, please adhere to the following guidelines:
 
-https://github.com/beyzanurer
+1. **Create a Descriptive Pull Request Title**: Ensure that your pull request title clearly describes the changes you're making.
 
-https://github.com/faruk-ayrcc25 
+2. **Provide Detailed Descriptions**: In your pull request description, provide a clear and detailed explanation of the changes you've made and why they are necessary.
 
-https://github.com/SeymaNur44 
+3. **One Pull Request per Feature**: If you're adding multiple features or making several changes, please submit each as a separate pull request.
+
+4. **Follow Code Standards**: Maintain code cleanliness and adhere to the coding standards used in the project.
+
+5. **Test Your Changes**: Before submitting a pull request, test your changes thoroughly to ensure they work as expected and do not introduce any regressions.
+
+6. **Update Documentation**: If your changes impact any documentation, make sure to update it accordingly.
+
+7. **Resolve Conflicts**: If there are any conflicts with the base branch, resolve them before submitting your pull request.
+
+8. **Request Reviews**: Assign reviewers to your pull request to ensure that your changes are properly reviewed before merging.
+
+9. **Be Responsive**: Respond promptly to any feedback or comments on your pull request.
+
+10. **Ensure CI/CD Passes**: Ensure that all continuous integration (CI) checks pass before merging your pull request.
+
+## License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
