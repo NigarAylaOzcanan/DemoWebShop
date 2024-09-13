@@ -18,6 +18,7 @@ public class US_205_NegativeLogin extends BaseDriver {
     @Test(priority = 1)
     public void negativeLogin1() {
 
+        // empty e-mail and password
         Actions actions = new Actions(driver);
         WebElement login = driver.findElement(By.linkText("Log in"));
         actions.moveToElement(login).click().build().perform();
@@ -33,6 +34,8 @@ public class US_205_NegativeLogin extends BaseDriver {
 
     @Test(priority = 2)
     public void negativeLogin2() {
+
+        // valid e-mail, empty password
         Actions actions = new Actions(driver);
         WebElement login = driver.findElement(By.linkText("Log in"));
         actions.moveToElement(login).click().build().perform();
@@ -51,6 +54,8 @@ public class US_205_NegativeLogin extends BaseDriver {
 
     @Test(priority = 3)
     public void negativeLogin3() {
+
+        // empty e-mail and valid password
         Actions actions = new Actions(driver);
         WebElement login = driver.findElement(By.linkText("Log in"));
         actions.moveToElement(login).click().build().perform();
@@ -69,6 +74,8 @@ public class US_205_NegativeLogin extends BaseDriver {
 
     @Test(priority = 4)
     public void negativeLogin4() {
+
+        // invalid e-mail or password
         Actions actions = new Actions(driver);
         WebElement login = driver.findElement(By.linkText("Log in"));
         actions.moveToElement(login).click().build().perform();
@@ -86,5 +93,7 @@ public class US_205_NegativeLogin extends BaseDriver {
         WebElement unregisteredCustomer = driver.findElement(By.xpath("//div[@class='validation-summary-errors']//li"));
         System.out.println(unregisteredCustomer.getText());
         Assert.assertTrue(unregisteredCustomer.getText().contains("No customer account found"));
+
+        tearDown();
     }
 }

@@ -3,18 +3,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 public class US_209_OrderHistory extends BaseDriver {
-
     // Credentials:
     // Site -> https://demowebshop.tricentis.com/"
     // Email -> mefeget417@sfpixel.com
     // Password -> password258
-    Actions actions = new Actions(driver);
     @Test
-    public void OrderHistory() {
+    public void orderHistory() {
+        Actions actions = new Actions(driver);
+
         // Click on the login button
         WebElement loginBtn = driver.findElement(By.linkText("Log in"));
         actions.click(loginBtn).build().perform();
@@ -53,5 +51,7 @@ public class US_209_OrderHistory extends BaseDriver {
         WebElement pdfInvoiceBtn = driver.findElement(By.linkText("PDF Invoice"));
         Assert.assertTrue(pdfInvoiceBtn.isEnabled());
         actions.click(pdfInvoiceBtn).build().perform();
+
+        tearDown();
     }
 }

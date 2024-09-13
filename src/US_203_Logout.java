@@ -69,5 +69,6 @@ public class US_203_Logout extends BaseDriver {
         Assert.assertTrue(successfullLogOut.isDisplayed(), "Logout is unsuccessful");
         System.out.println("Logout Is Successful.");
 
+        tearDown();
     }
 }

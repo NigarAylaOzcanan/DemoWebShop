@@ -12,7 +12,7 @@ public class BaseDriver {
     public static WebDriver driver;
     public static WebDriverWait wait;
     @BeforeClass
-    public void initialOperations() {
+    public void setUp() {
 
         driver.navigate().to("https://demowebshop.tricentis.com/");
     }
@@ -24,7 +24,7 @@ public class BaseDriver {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
     @AfterClass
-    public static void finishingOperations() {
+    public static void tearDown() {
         Tools.wait(3);
         driver.quit();
     }

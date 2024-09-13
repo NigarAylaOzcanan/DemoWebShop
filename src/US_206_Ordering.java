@@ -172,5 +172,7 @@ public class US_206_Ordering extends BaseDriver {
         Assert.assertTrue(titleValidation.getText().contains("successfully"), "Transaction could not be confirmed");
         WebElement continueButton5 = driver.findElement(By.xpath("//input[@class='button-2 order-completed-continue-button']"));
         actionsDriver.moveToElement(continueButton5).click().build().perform();
+
+        tearDown();
     }
 }

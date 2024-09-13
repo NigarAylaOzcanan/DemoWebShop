@@ -16,7 +16,7 @@ public class US_202_NegativeRegister extends BaseDriver {
     // E-mail: beyzanur.er@outlook.com
     // Password: Beyza123.
     @Test
-    public void Test1() {
+    public void registerNegative() {
         Actions actionsDriver = new Actions(driver);
 
         //Click on the Register button on the homepage.
@@ -51,5 +51,6 @@ public class US_202_NegativeRegister extends BaseDriver {
         Assert.assertTrue(messageText.getText().equals("The specified email already exists"), " ");
         System.out.println(messageText.getText());
 
+        tearDown();
     }
 }

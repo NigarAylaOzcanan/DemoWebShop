@@ -9,6 +9,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 public class US_208_UsingCouponAndGiftCards extends BaseDriver {
     // CREDENTIALS:
     // Firs Name: Caput
@@ -30,12 +31,10 @@ public class US_208_UsingCouponAndGiftCards extends BaseDriver {
 
         WebElement loginButton = driver.findElement(By.xpath("(//input[@type='submit'])[2]"));
         actionsDriver.moveToElement(loginButton).click().build().perform();
-
     }
 
     @Test(priority = 2)
     public void discountCodeAndGiftCards() {
-
         //The process of adding the product to the cart
 
         Actions actionsDriver = new Actions(driver);
@@ -196,5 +195,6 @@ public class US_208_UsingCouponAndGiftCards extends BaseDriver {
         WebElement continueButton5 = driver.findElement(By.xpath("//input[@class='button-2 order-completed-continue-button']"));
         actionsDriver.moveToElement(continueButton5).click().build().perform();
 
+        tearDown();
     }
 }
