@@ -2,7 +2,7 @@
 
 ### Project Overview
 
-This project is aimed at testing various functionalities of a web store using Selenium and TestNG. The web store under test is [DemoWebShop](https://demowebshop.tricentis.com/).
+This project aims to test various functionalities of a web store using Selenium and TestNG. The web store being tested is [DemoWebShop](https://demowebshop.tricentis.com/).
 
 ## User Stories Covered
 
