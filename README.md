@@ -34,7 +34,7 @@ This project is aimed at testing various functionalities of a web store using Se
    
 4. WebDriver for the browser under test (e.g., ChromeDriver, FirefoxDriver).
 
-## **Tecnologies and Tools:** 
+## **Technologies and Tools:** 
 
 - Selenium WebDriver
   
